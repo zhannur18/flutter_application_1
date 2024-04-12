@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 void main() => runApp(const SpacedItemsList());
 
 class Item {
-  final int id;
+  int id;
   String name;
   String group;
 
@@ -11,23 +11,23 @@ class Item {
 }
 
 class SpacedItemsList extends StatefulWidget {
-  const SpacedItemsList({Key? key}) : super(key: key);
+  const SpacedItemsList({super.key});
 
   @override
-  _SpacedItemsListState createState() => _SpacedItemsListState();
+  SpacedItemsListState createState() => SpacedItemsListState();
 }
 
-class _SpacedItemsListState extends State<SpacedItemsList> {
+class SpacedItemsListState extends State<SpacedItemsList> {
   late List<Item> items;
 
   @override
   void initState() {
     super.initState();
     items = [
-      Item(id: 1, name: 'Zan', group: 'SE-2218'),
-      Item(id: 2, name: 'Sara', group: 'SE-2306'),
-      Item(id: 3, name: 'Nur', group: 'CS-2209'),
-      Item(id: 4, name: 'Laura', group: 'EE-2317'),
+      Item(id: 1, name: 'Zhan', group: 'SE-2218'),
+      Item(id: 2, name: 'Nur', group: 'SE-2219'),
+      Item(id: 3, name: 'Laura', group: 'CS-2112'),
+      Item(id: 4, name: 'Sara', group: 'EE-2309'),
     ];
   }
 
@@ -43,7 +43,7 @@ class _SpacedItemsListState extends State<SpacedItemsList> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Items List'),
+          title: const Text('Items List'),
         ),
         body: ListView.builder(
           itemCount: items.length,
@@ -54,7 +54,7 @@ class _SpacedItemsListState extends State<SpacedItemsList> {
                 _showUpdateModal(context, items[index]);
               },
               onDelete: () {
-                _showDeleteConfirmation(context, items[index]);
+                _showDeleteConfirmation(context, index);
               },
             );
           },
@@ -64,10 +64,12 @@ class _SpacedItemsListState extends State<SpacedItemsList> {
   }
 
   void _showUpdateModal(BuildContext context, Item item) {
+    final TextEditingController idController =
+    TextEditingController(text: item.id.toString());
     final TextEditingController nameController =
-        TextEditingController(text: item.name);
+    TextEditingController(text: item.name);
     final TextEditingController groupController =
-        TextEditingController(text: item.group);
+    TextEditingController(text: item.group);
 
     showDialog(
       context: context,
@@ -78,12 +80,16 @@ class _SpacedItemsListState extends State<SpacedItemsList> {
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
+                controller: idController,
+                decoration: const InputDecoration(labelText: 'ID'),
+              ),
+              TextField(
                 controller: nameController,
-                decoration: InputDecoration(labelText: 'Name'),
+                decoration: const InputDecoration(labelText: 'Name'),
               ),
               TextField(
                 controller: groupController,
-                decoration: InputDecoration(labelText: 'Group'),
+                decoration: const InputDecoration(labelText: 'Group'),
               ),
             ],
           ),
@@ -98,6 +104,7 @@ class _SpacedItemsListState extends State<SpacedItemsList> {
               onPressed: () {
                 // Update item logic here
                 setState(() {
+                  item.id = int.parse(idController.text);
                   item.name = nameController.text;
                   item.group = groupController.text;
                 });
@@ -111,7 +118,7 @@ class _SpacedItemsListState extends State<SpacedItemsList> {
     );
   }
 
-  void _showDeleteConfirmation(BuildContext context, Item item) {
+  void _showDeleteConfirmation(BuildContext context, int index) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -129,7 +136,7 @@ class _SpacedItemsListState extends State<SpacedItemsList> {
               onPressed: () {
                 // Delete item logic here
                 setState(() {
-                  items.remove(item);
+                  items.removeAt(index);
                 });
                 Navigator.of(context).pop();
               },
@@ -144,11 +151,11 @@ class _SpacedItemsListState extends State<SpacedItemsList> {
 
 class ItemWidget extends StatelessWidget {
   const ItemWidget({
-    Key? key,
+    super.key,
     required this.item,
     required this.onUpdate,
     required this.onDelete,
-  }) : super(key: key);
+  });
 
   final Item item;
   final VoidCallback onUpdate;
@@ -171,11 +178,11 @@ class ItemWidget extends StatelessWidget {
           children: [
             IconButton(
               onPressed: onUpdate,
-              icon: Icon(Icons.edit),
+              icon: const Icon(Icons.edit),
             ),
             IconButton(
               onPressed: onDelete,
-              icon: Icon(Icons.delete),
+              icon: const Icon(Icons.delete),
             ),
           ],
         ),
