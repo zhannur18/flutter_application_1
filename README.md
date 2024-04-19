@@ -25,7 +25,8 @@ The layout design follows a minimalist and modern aesthetic, with a focus on sho
 ## Screenshots:
 ![image](https://github.com/zhannur18/flutter_application_1/assets/129687473/6eeb21e5-808b-47d2-ab25-a6c42553432a)
 ![image](https://github.com/zhannur18/flutter_application_1/assets/129687473/530b0bfb-28cf-4b77-845e-7ce27430bea9)
-![image](https://github.com/zhannur18/flutter_application_1/assets/129687473/28c558fb-a579-4b37-8297-803b5f9e7562)
+![image](https://github.com/zhannur18/flutter_application_1/assets/129687473/5acfebdd-508f-446b-b3a5-6d5d563641b8)
+
 
 
 Packages we are using:
