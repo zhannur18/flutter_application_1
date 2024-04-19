@@ -28,5 +28,7 @@ The layout design follows a minimalist and modern aesthetic, with a focus on sho
 ![image](https://github.com/zhannur18/flutter_application_1/assets/129687473/28c558fb-a579-4b37-8297-803b5f9e7562)
 
 
+Packages we are using:
 
+flutter_svg: https://pub.dev/packages/flutter_svg 
 Overall, the "Fashion E-commerce App" project aims to deliver a visually appealing and user-friendly shopping experience for fashion enthusiasts, leveraging Flutter's capabilities to create a seamless and responsive mobile application.
